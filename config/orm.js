@@ -29,5 +29,35 @@ const orm = {
       if (err) throw err;
       cb(dbres);
     });
+  },
+  insertOne: function(tableInput, col, val, cb) {
+    var query = 'INSERT INTO ' + tableInput;
+
+    query += ' (';
+    query += col.toString();
+    query += ') ';
+    query += 'VALUES (';
+    query += printQuestionMarks(val.length);
+    query += ') ';
+
+    connection.query(query, val, (err, dbres) => {
+      if (err) throw err;
+      cb(dbres);
+    });
+  },
+  updateOne: function(tableInput, objColVals, condition, cb) {
+    var query = 'UPDATE ' + tableInput;
+
+    query += ' SET ';
+    query += objToSql(objColVals);
+    query += ' WHERE ';
+    query += condition;
+
+    connection.query(query, (err, dbres) => {
+      if (err) throw err;
+      cb(dbres);
+    });
   }
 };
+
+module.exports = orm;
