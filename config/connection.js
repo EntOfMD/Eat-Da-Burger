@@ -1,11 +1,11 @@
 const mysql = require('mysql');
 const keys = require('./keys');
 const connection = mysql.createConnection({
-  host: keys.mysqlHost,
+  host: keys.mysql.Host,
   port: 3306,
-  user: keys.mysqlUser,
-  password: keys.mysqlPass,
-  database: keys.mysqlDB
+  user: keys.mysql.User,
+  password: keys.mysql.Pass,
+  database: keys.mysql.DB
 });
 
 connection.connect(err => {
