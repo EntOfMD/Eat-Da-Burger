@@ -15,7 +15,7 @@ router.get('/app', (req, res) => {
 });
 
 router.post('/app/addBurger', (req, res) => {
-  if (req.body.burger_name.length > 0) {
+  if (req.body.burger_name.length < 0) {
     burger.insertOne(req.body.burger_name, result => {
       res.redirect('/');
     });
