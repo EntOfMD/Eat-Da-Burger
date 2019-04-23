@@ -25,9 +25,10 @@ function objToSql(obj) {
 
 const orm = {
   selectAll: function(tableInput, cb) {
-    connection.query(`SELECT * FROM ?`, { tableInput }, (err, dbres) => {
+    let query = `SELECT * FROM ${tableInput};`;
+    connection.query(query, (err, result) => {
       if (err) throw err;
-      cb(dbres);
+      cb(result);
     });
   },
   insertOne: function(tableInput, col, val, cb) {
