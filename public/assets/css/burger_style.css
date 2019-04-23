@@ -2,8 +2,16 @@
 
 body {
   font-family: 'Roboto Condensed', sans-serif;
+  background-image: url('https://media.npr.org/assets/img/2018/03/02/classic-blend-burger_custom-1df365a8f45647ff29d403f271e5e60fd9540c84-s800-c85.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 #main-gif {
   height: 200px;
+}
+
+.jumbotron {
+  opacity: 0.9;
 }
