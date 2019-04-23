@@ -2,12 +2,12 @@
     <div class="jumbotron mt-3 rounded">
         <div class="row justify-content-center">
             <div class="col-md-12 text-center">
-
                 <img id="main-gif"
                     src="https://media0.giphy.com/media/l3mDrqQeUk6fC/giphy.gif?cid=790b76115cbe5e326e4d526332447687"
                     alt="animated bouncing burger">
                 <br />
-                <p class="lead display-1">Eat-Da-Burger!</p>
+                <p class="lead display-1">Eat Da Burger!</p>
+                <p class="h4">GET IN MA BELLY!</p>
             </div>
         </div>
         <div class="row">
@@ -15,11 +15,11 @@
                 <div class="row">
                     {{#each data}}
                     {{#unless this.devoured}}
-                    <div class="col-md-9 text-right mt-2">
+                    <div class="col-md-9 text-center mt-2">
                         {{this.id}}. {{this.burger_name}}
                     </div>
                     <div class="col-md-3 text-left">
-                        <form action="/update?_method=PUT" method="POST">
+                        <form action="/app/update?_method=PUT" method="POST">
                             <input type="hidden" type="text" autocomplete="off" name="id" value={{this.id}}>
                             <button type="submit" class="btn btn-warning mb-1 rounded">CRUSH IT!</button>
                         </form>
@@ -32,12 +32,21 @@
                 {{#each data}}
                 {{#if this.devoured}}
                 <div class="list-group-item list-group-item-action disabled">{{this.id}}.
-                    <span class="text-info">{{this.burger_name}}</span> has been
+                    <span class="text-success">{{this.burger_name}}</span> has been
                     <span class="text-danger"> crushed!</span>
 
                 </div>
                 {{/if}}
                 {{/each}}
+            </div>
+        </div>
+        <div class="row justify-content-center m-3">
+            <div class="col-md-6 text-center">
+                <form action="/app/addBurger?_method=POST" method="POST">
+                    <input type="text" name="burger_name" autocomplete="off" placeholder="Type the burger name here"
+                        class="form-control">
+                    <button type="submit" class="btn btn-danger m-2">Add a Burger!</button>
+                </form>
             </div>
         </div>
     </div>
