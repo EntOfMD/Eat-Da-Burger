@@ -16,6 +16,7 @@ if (app.get('env') === 'development') {
   const logger = require('morgan');
   app.use(logger('dev'));
 }
+app.use(require('./controllers/burgers_controller'));
 
 app.listen(PORT, err => {
   if (err) throw err;
