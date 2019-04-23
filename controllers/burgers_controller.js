@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const faker = require('faker');
 const burger = require('../models/burger');
 
 //the page doesn't reload once, so we're forcing it to
@@ -15,12 +15,20 @@ router.get('/app', (req, res) => {
 });
 
 router.post('/app/addBurger', (req, res) => {
-  burger.insertOne(req.body.burger_name, result => {
-    if (result) {
-      console.log(`added, redirecting`);
+  if (req.body.burger_name.length > 0) {
+    burger.insertOne(req.body.burger_name, result => {
       res.redirect('/');
-    }
-  });
+    });
+  } else {
+    let getRandomName = () => {
+      let tempName = faker.hacker.noun();
+      return `${tempName} burger!`;
+    };
+    burger.insertOne(getRandomName(), result => {
+      res.redirect('/');
+      console.log(`Since a name wasn't found, randomly generated one.`);
+    });
+  }
 });
 
 //router.put didn't work for me, but this did
