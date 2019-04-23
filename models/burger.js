@@ -6,13 +6,19 @@ const burger = {
       cb(res);
     });
   },
-  insertOne: function(col, val, cb) {
-    orm.insertOne('burgers', col, val, res => {
-      cb(res);
-    });
+  insertOne: function(bg_name, cb) {
+    orm.insertOne(
+      'burgers',
+      ['burger_name', 'devoured'],
+      [bg_name, false],
+      res => {
+        cb(res);
+      }
+    );
   },
-  updateOne: function(objColVal, condition, cb) {
-    orm.updateOne('burgers', objColVal, condition, res => {
+  updateOne: function(id, cb) {
+    let condition = `id=${id}`;
+    orm.updateOne('burgers', { devoured: true }, condition, res => {
       cb(res);
     });
   }
