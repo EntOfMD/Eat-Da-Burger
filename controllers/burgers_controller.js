@@ -17,7 +17,7 @@ router.get('/app', (req, res) => {
 router.post('/app/addBurger', (req, res) => {
   if (req.body.burger_name.length < 0) {
     burger.insertOne(req.body.burger_name, result => {
-      res.redirect('/');
+      res.redirect('/app#attBtn');
     });
   } else {
     let getRandomName = () => {
@@ -25,7 +25,7 @@ router.post('/app/addBurger', (req, res) => {
       return `${tempName} burger!`;
     };
     burger.insertOne(getRandomName(), result => {
-      res.redirect('/');
+      res.redirect('/app#addBtn');
       console.log(`Since a name wasn't found, randomly generated one.`);
     });
   }
